@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" id="button" value="Request Bluetooth Device" onclick="onButtonClick()">
+    <script>
+        function onButtonClick() {
+            let filters = [];
+
+
+
+            let options = {};
+    
+            options.acceptAllDevices = true;
+
+            console.log('Requesting Bluetooth Device...');
+            console.log('with ' + JSON.stringify(options));
+            navigator.bluetooth.requestDevice(options)
+            .then(device => {
+                console.log('> Name:             ' + device.name);
+                console.log('> Id:               ' + device.id);
+                console.log('> Connected:        ' + device.gatt.connected);
+            })
+            .catch(error => {
+                console.log('Argh! ' + error);
+            });
+            }
+    </script>
+</body>
+</html>
